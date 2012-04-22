@@ -1,12 +1,19 @@
 Yet Another Binary Decision Diagram package
 
+
 AUTHOR: Minh Pham
 
 
-== Features Implemented ==
+PLANNED FEATURES:
+
+
 * BDD Operations: And, Or
 
 
-== Features Not Implemented ==
+NOT-IMPLEMENTED FEATURES
+
+
 * Complemented Edge
+
+
 * Other BDD Operations

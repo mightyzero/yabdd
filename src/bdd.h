@@ -15,7 +15,7 @@ enum BOP {
 }
 
 typedef struct BNode {
-    int id;
+    int index;
     BNode* low;
     BNode* high;
 } bnode;
