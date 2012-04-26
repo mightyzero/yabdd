@@ -25,7 +25,7 @@
 	  . . X .
 	  
 **************************************************************************/
-#include <stdlib.h>
+#include <cstdlib>
 #include "bdd.h"
 
 int N;                /* Size of the chess board */
