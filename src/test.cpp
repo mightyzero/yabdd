@@ -4,14 +4,16 @@
 #include "bdd.hpp"
 
 int main(int argc, char** argv) {
-	bnode a = bddtrue;
+	bdd a = bddtrue;
 	std::cout << a << "\n";
+	std::cout << (a == bddtrue) << "\n";
 	
-	bnode b = bddfalse;
+	bdd b = bddfalse;
 	std::cout << b << "\n";
+	std::cout << (b == bddfalse) << "\n";
 	
-	bdd c = bnode(2, &a, &b);
-	bdd d = bnode(3, &a, &b);
+	bdd c = bdd_ithvar(0);
+	bdd d = bdd_ithvar(1);
 	c &= d;
 	std::cout << c << "\n";
 	

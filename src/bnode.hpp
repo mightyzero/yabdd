@@ -7,23 +7,32 @@
 
 struct bnode {
 public:
-	int 	index;		// lower index = closer to the top
-	bnode* 	high;		// pointer to the THEN node
-	bnode* 	low;		// pointer to the ELSE node
+	int index; // lower index = closer to the top
+	int high;  // pointer to the THEN node
+	int low; // pointer to the ELSE node
 
 public:
+	// Constructors
 	bnode();
-	bnode(int i, bnode* h, bnode* l);		// Parameterized constructor
-	bnode& operator=(const bnode &that);	// Copy constructor
-	
-	const bnode& apply(const bnode& that, const bdd_op op);	// Map op to ITE form
-	//~ bool operator==(const bnode& that) const;			// Equality operator
-	// Insertion operator
+	bnode(int i);
+	bnode(int i, int h, int l);
+	bnode& operator=(const bnode &that); // Copy constructor
+
+	bool operator==(const bnode& that) const;
+	bool operator<(const bnode& that) const;
+	bool operator<=(const bnode& that) const;
+
+	const bnode& apply(const bnode& that, const bdd_op op); // Map op to ITE form
+
+private:
 	friend std::ostream& operator<<(std::ostream& out, const bnode& node);
 };
 
-const bnode bddfalse(0, 0, 0);	// 0-sink
-const bnode bddtrue(1, 0, 0);	// 1-sink
+const bnode bnode_0(0, 0, 0); // 0-sink
+const bnode bnode_1(1, 0, 0); // 1-sink
 
+const bnode operator !(const bnode& node);
+const bnode& bnode_min(const bnode& a, const bnode& b);
+const bnode& bnode_min(const bnode& a, const bnode& b, const bnode& c);
 
 #endif

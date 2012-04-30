@@ -21,12 +21,12 @@ test: $(test_obj) $(obj)
 	$(CXX) $(CXXFLAGS) -o $(test) $(test_obj) $(obj) $(LDFLAGS)
 	-./$(test)
 
-demo: $(demo_obj).o $(obj)
+demo: $(demo_obj) $(obj)
 	$(CXX) $(CXXFLAGS) -o $(demo) $(demo_obj) $(obj) $(LDFLAGS)
 	-./$(demo)
 
 clean:
-	-rm -f $(obj)
+	-rm -f $(SRC)/*.o
 
 %.o: %.cpp %.hpp
 	$(CXX) $(CXXFLAGS) -o $@ -c $< $(LDFLAGS)
