@@ -26,29 +26,29 @@
 	  
 **************************************************************************/
 #include <cstdlib>
-#include "bdd.h"
+#include "bdd.hpp"
 
 int N;                /* Size of the chess board */
-bdd **X;              /* BDD variable array */
-bdd queen;            /* N-queen problem express as a BDD */
+bdd*** X;              /* BDD variable array */
+bdd* queen;            /* N-queen problem express as a BDD */
 
 
 /* Build the requirements for all other fields than (i,j) assuming
 	that (i,j) has a queen */
 void build(int i, int j)
 {
-	bdd a=bddtrue, b=bddtrue, c=bddtrue, d=bddtrue;
+	bdd a= bdd_truepp(), b=bdd_truepp(), c=bdd_truepp(), d=bdd_truepp();
 	int k,l;
 	
 		/* No one in the same column */
 	for (l=0 ; l<N ; l++)
 		if (l != j)
-			a &= X[i][j] >> !X[i][l];
+			a &= *X[i][j] >> !*X[i][l];
 
 		/* No one in the same row */
 	for (k=0 ; k<N ; k++)
 		if (k != i)
-			b &= X[i][j] >> !X[k][j];
+			b &= *X[i][j] >> !*X[k][j];
 
 		/* No one in the same up-right diagonal */
 	for (k=0 ; k<N ; k++)
@@ -56,7 +56,7 @@ void build(int i, int j)
 		int ll = k-i+j;
 		if (ll>=0 && ll<N)
 			if (k != i)
-				c &= X[i][j] >> !X[k][ll];
+				c &= *X[i][j] >> !*X[k][ll];
 	}
 
 		/* No one in the same down-right diagonal */
@@ -65,10 +65,10 @@ void build(int i, int j)
 		int ll = i+j-k;
 		if (ll>=0 && ll<N)
 	 if (k != i)
-		 d &= X[i][j] >> !X[k][ll];
+		 d &= *X[i][j] >> !(*X[k][ll]);
 	}
 
-	queen &= a & b & c & d;
+	*queen &= a & b & c & d;
 }
 
 
@@ -92,14 +92,14 @@ int main(int ac, char **av)
 
 	/* Initialize with 100000 nodes, 10000 cache entries and NxN variables */
 	bdd_init(N*N*256, 10000);
-	bdd_setvarnum(N*N);
+	bdd_setnumvar(N*N);
 
-	queen = bddtrue;
+	queen = bdd_true();
 	
 	/* Build variable array */
-	X = new bdd*[N];
+	X = new bdd**[N];
 	for (n=0 ; n<N ; n++)
-		X[n] = new bdd[N];
+		X[n] = new bdd*[N];
 
 	for (i=0 ; i<N ; i++)
 		for (j=0 ; j<N ; j++)
@@ -108,10 +108,10 @@ int main(int ac, char **av)
 	/* Place a queen in each row */
 	for (i=0 ; i<N ; i++)
 	{
-		bdd e = bddfalse;
+		bdd e = bdd_falsepp();
 		for (j=0 ; j<N ; j++)
-			e |= X[i][j];
-		queen &= e;
+			e |= *X[i][j];
+		*queen &= e;
 	}
 	
 	/* Build requirements for each variable(field) */
@@ -124,8 +124,8 @@ int main(int ac, char **av)
 	/* Print the results */
 	cout << "There are " << bdd_satcount(queen) << " solutions\n";
 	cout << "one is:\n";
-	bdd solution = bdd_satone(queen);
-	cout << bddset << solution << endl;
+	bdd* solution = bdd_satone(queen);
+	bdd_fprintdot("queens.dot", solution);
 
 	bdd_done();
 	
