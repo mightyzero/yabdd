@@ -12,7 +12,7 @@
 
 int bddnodesize = 0;
 int varsetsize = 0;
-int numvars = 0;		// Number of variables actually used
+int numvars = 0; // Number of variables actually used
 
 class bdd {
 public:
@@ -43,15 +43,6 @@ public:
 		return (this->index == that.index && this->high == that.high
 				&& this->low == that.low);
 	}
-//	bool operator<(bdd& that) {
-//		return (((that.index < 2) && (this->index > 1))
-//				|| ((this->index > 1) && (this->index <= that.index)));
-//	}
-//
-//	bool operator<=(bdd& that) {
-//		return ((that.index < 2)
-//				|| ((this->index > 1) && (this->index <= that.index)));
-//	}
 
 	// Boolean assignment operators
 	bdd& operator&=(bdd& that) {
@@ -150,7 +141,7 @@ bdd* bdd_ithvar(int i) {
 	numvars++;
 	BDDTable[0]->index = numvars;
 	BDDTable[1]->index = numvars;
-	return bdd_makenode(i + 1, bdd_true(), bdd_false());
+	return bdd_makenode(i, bdd_true(), bdd_false());
 }
 
 /** Shannon co-factor expansion wrt variable v (represented by bdd node)
@@ -192,7 +183,6 @@ bdd* bdd_ite(bdd* I, bdd* T, bdd* E) {
 	if (split_var > E->index) {
 		split_var = E->index;
 	}
-//	printf("%i %i %i %i\n", I.root.index, T.root.index, E.root.index, r.index);
 	bdd* Ixt = bdd_restrict(I, split_var, true);
 	bdd* Txt = bdd_restrict(T, split_var, true);
 	bdd* Ext = bdd_restrict(E, split_var, true);
@@ -290,16 +280,23 @@ void bdd_done() {
 	delete[] BDDTable;
 }
 
-bdd* bdd_satone(bdd* subtree) {
-	if (subtree == bdd_false()) {
-		return 0;
-	} else if (subtree == bdd_true()) {
+bdd* bdd_satone_rec(bdd* subtree) {
+	if (subtree == bdd_false() || subtree == bdd_true()) {
 		return subtree;
 	} else if (subtree->low == bdd_false()) {
-		return bdd_ite(subtree, bdd_true(), bdd_satone(subtree->high));
-	} else {
-		return bdd_ite(subtree, bdd_false(), bdd_satone(subtree->low));
+		return bdd_makenode(subtree->index, bdd_false(),
+				bdd_satone_rec(subtree->high));
+	} else { /* subtree->high == bdd_false() */
+		return bdd_makenode(subtree->index, bdd_satone_rec(subtree->low),
+				bdd_false());
 	}
+}
+
+bdd* bdd_satone(bdd* subtree) {
+	if (subtree == bdd_false())
+		return 0;
+	else
+		return bdd_satone_rec(subtree);
 }
 
 double bdd_satcount_rec(bdd* subtree) {
@@ -310,14 +307,17 @@ double bdd_satcount_rec(bdd* subtree) {
 	} else {
 		bdd* low = subtree->low;
 		bdd* high = subtree->high;
-		return pow(low->index - subtree->index - 1, 2) * bdd_satcount_rec(low)
-				+ pow(high->index - subtree->index - 1, 2)
-						* bdd_satcount_rec(high);
+		double size, s;
+		s = pow(2.0, (low->index) - (subtree->index) - 1);
+		size += s * bdd_satcount_rec(low);
+		s = pow(2.0, (high->index) - (subtree->index) - 1);
+		size += s * bdd_satcount_rec(high);
+		return size;
 	}
 }
 
 double bdd_satcount(bdd* subtree) {
-	return pow(subtree->index - 1, 2) * bdd_satcount_rec(subtree);
+	return pow(2.0, (subtree->index) - 1) * bdd_satcount_rec(subtree);
 }
 
 #endif
