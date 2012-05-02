@@ -1,0 +1,38 @@
+\begin{thebibliography}{1}
+
+\bibitem{vlsi}
+{\em Algorithms and Data Structures in VLSI Design}.
+\newblock Springer-Verlag, 1990.
+
+\bibitem{andersen99}
+Henrik~Reif Andersen.
+\newblock An introduction to binary decision diagrams.
+\newblock In {\em In Lecture notes for Efficient Algorithms and Programs}.
+
+\bibitem{brb90}
+Karl~S. Brace, Richard~L. Rudell, and Randal~E. Bryant.
+\newblock Efficient implementation of a bdd package.
+\newblock In {\em 27th ACM/IEEE Design Automation Conference}.
+
+\bibitem{bryant86}
+Randal~E. Bryant.
+\newblock Graph-based algorithms for boolean function manipulation.
+\newblock In {\em IEEE Transactions on Computers}.
+
+\bibitem{cook71}
+Stephen~Arthur Cook.
+\newblock The complexity of theorem-proving procedures.
+\newblock In {\em Proceedings of the Third Annual ACM Symposium on the Theory
+  of Computing}.
+
+\bibitem{jansen01}
+Geert Jansen.
+\newblock Design of a pointerless bdd package.
+\newblock Technical report, IBM T.J. Watson Research Center, 2001.
+
+\bibitem{buddy}
+Jørn Lind-Nielsen.
+\newblock Buddy: a bdd package.
+\newblock \url{http://sourceforge.net/projects/buddy/}.
+
+\end{thebibliography}

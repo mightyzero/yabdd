@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yabdd", "yabdd.vcxproj", "{F4897743-5B00-5579-4180-9749CA289E29}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "buddy-2.4", "..\buddy-2.4\buddy-2.4.vcxproj", "{842EB7DE-2091-FE47-7F73-6E79B957258A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4897743-5B00-5579-4180-9749CA289E29}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F4897743-5B00-5579-4180-9749CA289E29}.Debug|Win32.Build.0 = Debug|Win32
+		{F4897743-5B00-5579-4180-9749CA289E29}.Release|Win32.ActiveCfg = Release|Win32
+		{F4897743-5B00-5579-4180-9749CA289E29}.Release|Win32.Build.0 = Release|Win32
+		{842EB7DE-2091-FE47-7F73-6E79B957258A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{842EB7DE-2091-FE47-7F73-6E79B957258A}.Debug|Win32.Build.0 = Debug|Win32
+		{842EB7DE-2091-FE47-7F73-6E79B957258A}.Release|Win32.ActiveCfg = Release|Win32
+		{842EB7DE-2091-FE47-7F73-6E79B957258A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

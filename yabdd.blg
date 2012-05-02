@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: yabdd.aux
+The style file: plain.bst
+Database file #1: yabdd.bib
+Warning--to sort, need author, editor, or key in vlsi
+Warning--empty author and editor in vlsi
+Warning--empty publisher in andersen99
+Warning--empty year in andersen99
+Warning--empty year in brb90
+Warning--empty year in bryant86
+Warning--empty year in cook71
+You've used 7 entries,
+            2118 wiz_defined-function locations,
+            524 strings with 4720 characters,
+and the built_in function-call counts, 1625 in all, are:
+= -- 138
+> -- 54
+< -- 0
++ -- 25
+- -- 16
+* -- 81
+:= -- 271
+add.period$ -- 20
+call.type$ -- 7
+change.case$ -- 29
+chr.to.int$ -- 0
+cite$ -- 14
+duplicate$ -- 85
+empty$ -- 174
+format.name$ -- 16
+if$ -- 344
+int.to.chr$ -- 0
+int.to.str$ -- 7
+missing$ -- 5
+newline$ -- 37
+num.names$ -- 12
+pop$ -- 61
+preamble$ -- 1
+purify$ -- 22
+quote$ -- 0
+skip$ -- 41
+stack$ -- 0
+substring$ -- 37
+swap$ -- 9
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 26
+warning$ -- 7
+while$ -- 12
+width$ -- 8
+write$ -- 66
+(There were 7 warnings)

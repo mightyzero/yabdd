@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -ansi
+CXXFLAGS = -Wall -ansi -g
 LDFLAGS = 
 
 SRC = ./src

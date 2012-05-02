@@ -91,8 +91,7 @@ int main(int ac, char **av)
 	}
 
 	/* Initialize with 100000 nodes, 10000 cache entries and NxN variables */
-	bdd_init(N*N*256, 10000);
-	bdd_setnumvar(N*N);
+	bdd_init(N*N*256);
 
 	queen = bdd_true();
 	

@@ -3,8 +3,7 @@
 #include "bdd.hpp"
 
 int main(int argc, char** argv) {
-	bdd_init(100, 100);
-	bdd_setnumvar(50);
+	bdd_init(100);
 	bdd* a = bdd_true();
 	std::cout << *a << "\n";
 	std::cout << (a == bdd_true()) << "\n";
@@ -21,8 +20,10 @@ int main(int argc, char** argv) {
 	bdd* sol = bdd_satone(c);
 	double numsol = bdd_satcount(c);
 
-	bdd_fprintdot("test.dot", sol);
+	bdd_fprintdot("test.dot", c);
 	printf("Number of solutions: %f", numsol);
+	
+	bdd_done();
 
 	return 0;
 }
